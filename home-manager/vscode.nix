@@ -1,20 +1,21 @@
 {pkgs, ...}: {
     programs.vscode = {
         enable = true;
-        # package = pkgs.vscodium;  
+        package = pkgs.vscodium;  
         userSettings = {
             "files.autoSave" = "afterDelay";
             "editor.fontFamily" = "'JetBrains Mono'";
-            "editor.fontSize" = 13;
+            "editor.fontSize" = 15;
             "editor.fontLigatures" = true;
+            "editor.letterSpacing" = 0.4;
+            "editor.smoothScrolling" = true;
         };
         extensions = with pkgs.vscode-extensions; [
-            dracula-theme.theme-dracula
             yzhang.markdown-all-in-one
             jnoortheen.nix-ide
             mkhl.direnv
             arrterian.nix-env-selector
-            llvm-vs-code-extensions.vscode-clangd
+            llvm-vs-code-extensions.vscode-clangd 
             ms-python.python
             #kiteco.kite
             #EricSia.pythonsnippets3

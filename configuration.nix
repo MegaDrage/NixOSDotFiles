@@ -33,7 +33,6 @@
       timeout = 10;
     };  
   };
-
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
@@ -58,10 +57,10 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-
   services = {
     xserver = {
       enable = true;
+      xkb.layout = "us,ru";
     };
     displayManager = {
       sddm = {

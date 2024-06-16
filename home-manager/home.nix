@@ -2,7 +2,7 @@
 
 {
   imports = [
-#    ./vscode.nix
+    ./vscode.nix
     ./ranger.nix
     ./zsh.nix
     ./hyprland.nix
