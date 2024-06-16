@@ -72,7 +72,7 @@
     desktopManager.plasma6.enable = true;
     printing.enable = true;
   };
-
+  services.flatpak.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -89,7 +89,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
+ 
   environment.systemPackages = with pkgs; [
     vesktop
     vim
@@ -97,7 +97,6 @@
     wget
     glxinfo
     fastfetch
-    floorp
     telegram-desktop
     lshw
     pciutils
@@ -111,6 +110,7 @@
     radeontop
     nekoray
     libGL
+    gnome.gnome-software
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
