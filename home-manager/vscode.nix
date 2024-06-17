@@ -20,6 +20,7 @@
             #kiteco.kite
             #EricSia.pythonsnippets3
             aaron-bond.better-comments
+            bungcip.better-toml
         ];
     };
 }

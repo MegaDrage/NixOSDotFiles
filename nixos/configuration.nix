@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./nvidia.nix
       ./fonts.nix
+      ./syncthing.nix
     ];
   
   environment.shells = with pkgs; [ zsh ];
@@ -110,6 +111,7 @@
     nekoray
     libGL
     gnome.gnome-software
+    obsidian
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
