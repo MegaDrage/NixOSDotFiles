@@ -91,6 +91,7 @@
   nixpkgs.config.allowUnfree = true;
  
   environment.systemPackages = with pkgs; [
+    onlyoffice-bin
     vesktop
     vim
     ferium
@@ -161,6 +162,8 @@
     extraOptions = "experimental-features = nix-command flakes";
   };
   # Enable OpenGL
+  networking.firewall.allowedTCPPorts = [ 8384 22000 ];
+  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
 
   hardware = { 
     opengl = {
