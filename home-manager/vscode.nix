@@ -9,6 +9,7 @@
             "editor.fontLigatures" = true;
             "editor.letterSpacing" = 0.4;
             "editor.smoothScrolling" = true;
+            "workbench.iconTheme" = "vscode-icons";
         };
         extensions = with pkgs.vscode-extensions; [
             yzhang.markdown-all-in-one
@@ -21,6 +22,10 @@
             #EricSia.pythonsnippets3
             aaron-bond.better-comments
             bungcip.better-toml
+            # SonarSource.sonarlint-vscode
+            vadimcn.vscode-lldb
+            # TeamHub.teamhub
+            vscode-icons-team.vscode-icons
         ];
     };
 }
