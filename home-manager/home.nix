@@ -9,6 +9,7 @@
     ./git.nix
     ./starship.nix
     ./bat.nix
+    ./gtk.nix
   ];
   home = {
     username = "megadrage";
