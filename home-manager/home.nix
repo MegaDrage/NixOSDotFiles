@@ -8,6 +8,7 @@
     ./hyprland.nix
     ./git.nix
     ./starship.nix
+    ./bat.nix
   ];
   home = {
     username = "megadrage";

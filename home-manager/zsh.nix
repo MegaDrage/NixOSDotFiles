@@ -9,7 +9,6 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
     shellAliases = {
-      code = "codium";
     };
     # dotDir = "${config.xdg.dataHome}/zsh";
     initExtra = "eval \"$(direnv hook zsh)\"";

@@ -7,7 +7,10 @@
 
     # Modesetting is required.
     modesetting.enable = true;
-
+    powerManagement = {
+      enable = false;
+      finegrained = false;
+    };
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
     # Support is limited to the Turing and later architectures. Full list of
@@ -15,7 +18,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = true;
+    open = false;
 
     # Enable the Nvidia settings menu,
   	# accessible via `nvidia-settings`.
@@ -34,9 +37,6 @@
   			enable = true;
   			enableOffloadCmd = true;
   		};
-
-  		# FIXME: Change the following values to the correct Bus ID values for your system!
-      # More on "https://wiki.nixos.org/wiki/Nvidia#Configuring_Optimus_PRIME:_Bus_ID_Values_(Mandatory)"
   		nvidiaBusId = "PCI:1:0:0";
   		amdgpuBusId = "PCI:5:0:0";
   	};

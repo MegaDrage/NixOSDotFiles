@@ -92,7 +92,6 @@
  
   environment.systemPackages = with pkgs; [
     onlyoffice-bin
-    vesktop
     vim
     ferium
     wget
