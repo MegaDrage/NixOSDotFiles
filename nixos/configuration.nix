@@ -118,6 +118,7 @@
   environment.pathsToLink = [ "/share/zsh" ];
 
   programs.direnv.enable = true;
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -161,6 +162,7 @@
     package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
   };
+  
   # Enable OpenGL
   networking.firewall.allowedTCPPorts = [ 8384 22000 ];
   networking.firewall.allowedUDPPorts = [ 22000 21027 ];

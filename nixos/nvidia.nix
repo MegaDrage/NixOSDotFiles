@@ -4,12 +4,12 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-
+    nvidiaPersistenced = true;
     # Modesetting is required.
     modesetting.enable = true;
     powerManagement = {
-      enable = false;
-      finegrained = false;
+      enable = true;
+      finegrained = true;
     };
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).

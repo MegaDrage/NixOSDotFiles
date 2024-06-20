@@ -10,6 +10,7 @@
     ./starship.nix
     ./bat.nix
     ./gtk.nix
+    ./qt.nix
   ];
   home = {
     username = "megadrage";
