@@ -1,17 +1,17 @@
 {pkgs, ...}:
 let
-  gruvboxplus = import ./gruvbox-plus.nix { inherit pkgs; };
+  gruvboxPlus = import ./gruvbox-plus.nix { inherit pkgs; };
 in
 {
   gtk = {
     enable = true;  
-    cursorTheme.package = pkgs.bibata-cursors;
-    cursorTheme.name = "Bibata-Modern-Ice";
+    # cursorTheme.package = pkgs.bibata-cursors;
+    # cursorTheme.name = "Bibata-Modern-Ice";
     
-    theme.package = pkgs.adw-gtk3;
-    theme.name = "adw-gtk3";
+    # theme.package = pkgs.solarc-gtk-theme;
+    # theme.name = "SolArc-Dark";
     
-    iconTheme.package = gruvboxPlus;
-    iconTheme.name = "GruvboxPlus";
+    # iconTheme.package = gruvboxPlus;
+    # iconTheme.name = "GruvboxPlus";
   };
 }

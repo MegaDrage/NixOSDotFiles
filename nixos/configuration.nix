@@ -12,6 +12,7 @@
       ./fonts.nix
       ./syncthing.nix
       ./docker.nix
+      ./stylix.nix
     ];
   
   environment.shells = with pkgs; [ zsh ];
