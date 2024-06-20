@@ -86,7 +86,7 @@
   users.users.megadrage = {
     isNormalUser = true;
     description = "MegaDrage";
-    extraGroups = [ "networkmanager" "wheel" "input" "docker" "video" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "docker" "video" ];
   };
 
   nixpkgs.config.allowUnfree = true;
