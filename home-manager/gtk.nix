@@ -1,10 +1,10 @@
-{...}:
+{pkgs, ...}:
 {
-  gtk = {
+ gtk = {
     enable = true;
-    iconTheme = {
-      package = gruvboxPlus;
-      name = "GruvboxPlus";
-    };
+    # theme = {
+    #   name = "Breeze-Dark";
+    #   package = pkgs.libsForQt5.breeze-gtk;
+    # };
   };
 }

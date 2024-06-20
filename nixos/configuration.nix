@@ -11,6 +11,7 @@
       ./nvidia.nix
       ./fonts.nix
       ./syncthing.nix
+      ./docker.nix
     ];
   
   environment.shells = with pkgs; [ zsh ];
@@ -85,7 +86,7 @@
   users.users.megadrage = {
     isNormalUser = true;
     description = "MegaDrage";
-    extraGroups = [ "networkmanager" "wheel" "input" "docker" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "docker" "video" "docker" ];
   };
 
   nixpkgs.config.allowUnfree = true;
