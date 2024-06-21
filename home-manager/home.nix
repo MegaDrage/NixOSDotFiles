@@ -11,6 +11,8 @@
     ./bat.nix
     ./gtk.nix
     ./qt.nix
+    ./dfconf.nix
+    ./home-packages.nix
   ];
   home = {
     username = "megadrage";
@@ -18,4 +20,5 @@
     stateVersion = "24.05";
     extraBuilderCommands = "sed -i 's/| head -1)/| head -1 || true)/' $out/activate";
   };
+  home.sessionVariables.GTK_THEME = "palenight";
 }

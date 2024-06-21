@@ -120,6 +120,7 @@
     nekoray
     libGL
     gnome.gnome-software
+    gnome.gnome-tweaks
     obsidian
   ];
 

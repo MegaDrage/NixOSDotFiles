@@ -49,5 +49,5 @@
     popups = 1.0;
   };
   
-  stylix.polarity = "dark" # “light” or “either”
+  stylix.polarity = "dark"; # “light” or “either”
 }
