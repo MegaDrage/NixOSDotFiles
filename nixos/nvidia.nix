@@ -4,6 +4,7 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
+    # Fix glitch
     nvidiaPersistenced = true;
     # Modesetting is required.
     modesetting.enable = true;
