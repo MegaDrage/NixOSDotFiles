@@ -18,8 +18,8 @@
   programs.zsh.enable = true;
 
   boot = {
-    kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" "NVreg_EnableGpuFirmware=0" ];
-    initrd.kernelModules = [ "amdgpu" ];
+    kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" "NVreg_EnableGpuFirmware=0" "rtw89" ];
+    # initrd.kernelModules = [ "amdgpu" ];
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -39,7 +39,7 @@
     hostName = "nixos";
     networkmanager.enable = true;
   };
-
+  hardware.enableRedistributableFirmware = true;
   time = {
     timeZone = "Asia/Novosibirsk";
     hardwareClockInLocalTime = true;
@@ -134,15 +134,15 @@
   
   security.polkit = {
     enable = true; 
-    extraConfig = ''
-      polkit.addRule(function(action, subject) {
-      if (action.id == "org.freedesktop.policykit.exec" &&
-          action.lookup("command_line") == "/usr/bin/bash [绝对路径]/.config/nekoray/config/vpn-run-root.sh" &&
-          subject.isInGroup("wheel")) {
-          return polkit.Result.YES;
-      }
-      })
-    '';
+    # extraConfig = ''
+    #   polkit.addRule(function(action, subject) {
+    #   if (action.id == "org.freedesktop.policykit.exec" &&
+    #       action.lookup("command_line") == "/usr/bin/bash [绝对路径]/.config/nekoray/config/vpn-run-root.sh" &&
+    #       subject.isInGroup("wheel")) {
+    #       return polkit.Result.YES;
+    #   }
+    #   })
+    # '';
   };
   xdg.portal = {
 		enable = true;
@@ -151,7 +151,11 @@
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  networking.firewall.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 8384 22000 80 443];
+    allowedUDPPorts = [ 22000 21027 ];
+  };
   system.autoUpgrade = {
     enable = true;
     channel = "https://nixos.org/channels/nixos-unstable";
@@ -171,15 +175,10 @@
     extraOptions = "experimental-features = nix-command flakes";
   };
   
-  # Enable OpenGL
-  networking.firewall.allowedTCPPorts = [ 8384 22000 ];
-  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
-
   hardware = { 
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
       
       extraPackages = with pkgs; [
         vulkan-validation-layers 
@@ -200,10 +199,6 @@
   }; 
 
   programs.dconf.enable = true;
-
-  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
-
-
 
 
   # This value determines the NixOS release from which the default
