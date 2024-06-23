@@ -12,7 +12,6 @@
       ./fonts.nix
       ./syncthing.nix
       ./docker.nix
-      ./stylix.nix
     ];
   
   environment.shells = with pkgs; [ zsh ];
@@ -202,6 +201,7 @@
 
   programs.dconf.enable = true;
 
+  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
 
 
 
