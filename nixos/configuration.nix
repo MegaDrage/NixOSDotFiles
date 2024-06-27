@@ -93,13 +93,14 @@
   users.users.megadrage = {
     isNormalUser = true;
     description = "MegaDrage";
-    extraGroups = [ "networkmanager" "wheel" "input" "docker" "video" ];
+    extraGroups = [ "wheel" "input" "docker" "video" "networkmanager" "rfkill" "audio" "network" ];
   };
 
   nixpkgs.config.allowUnfree = true;
  
   environment.systemPackages = with pkgs; [
     onlyoffice-bin
+    alacritty
     vim
     ferium
     wget

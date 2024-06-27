@@ -13,6 +13,7 @@
     ./qt.nix
     ./dfconf.nix
     ./home-packages.nix
+    ./kitty.nix
   ];
   home = {
     username = "megadrage";
