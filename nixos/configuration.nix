@@ -18,7 +18,9 @@
   programs.zsh.enable = true;
 
   boot = {
-    kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" "NVreg_EnableGpuFirmware=0" "rtw89" ];
+    kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    extraModprobeConfig = "options nouveau modeset=0";
     # initrd.kernelModules = [ "amdgpu" ];
     loader = {
       efi = {
@@ -99,8 +101,9 @@
   nixpkgs.config.allowUnfree = true;
  
   environment.systemPackages = with pkgs; [
-    onlyoffice-bin
-    alacritty
+    onlyoffice-bin 
+    obs-studio
+    blender
     vim
     ferium
     wget
@@ -176,7 +179,10 @@
     extraOptions = "experimental-features = nix-command flakes";
   };
   
-  hardware = { 
+  hardware = {
+    steam-hardware = {
+	enable = true;
+    }; 
     graphics = {
       enable = true;
       enable32Bit = true;
