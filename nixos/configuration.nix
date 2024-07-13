@@ -125,6 +125,8 @@
     gnome.gnome-software
     gnome-tweaks
     obsidian
+    zed-editor
+    gitnuro
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
