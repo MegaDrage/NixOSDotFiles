@@ -121,12 +121,15 @@
 		xdg-user-dirs
     radeontop
     nekoray
-    libGL
     gnome.gnome-software
     gnome-tweaks
     obsidian
     zed-editor
     gitnuro
+    chromium
+    btop
+    eza
+    spawn_fcgi
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
@@ -159,8 +162,8 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 8384 22000 80 443];
-    allowedUDPPorts = [ 22000 21027 ];
+    allowedTCPPorts = [ 8384 22000 80 81 443];
+    allowedUDPPorts = [ 80 81 443 22000 21027 ];
   };
   system.autoUpgrade = {
     enable = true;
@@ -208,7 +211,6 @@
   }; 
 
   programs.dconf.enable = true;
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
