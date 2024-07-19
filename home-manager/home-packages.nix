@@ -7,6 +7,6 @@
     gnomeExtensions.dash-to-panel
     gnomeExtensions.space-bar
     gnomeExtensions.arcmenu
-    palenight-theme
+    hyprshot
   ];
 }

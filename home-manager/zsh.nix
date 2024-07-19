@@ -20,7 +20,6 @@
       lt="eza --tree --level=2 --color=always --group-directories-first --icons";
       ldot="eza -a | grep -E '^\.'";
     };
-    # dotDir = "${config.xdg.dataHome}/zsh";
     initExtra = "eval \"$(direnv hook zsh)\"";
   };
 }

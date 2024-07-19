@@ -12,6 +12,7 @@
       ./fonts.nix
       ./syncthing.nix
       ./docker.nix
+      ./polkit.nix
     ];
   
   environment.shells = with pkgs; [ zsh ];
@@ -91,7 +92,9 @@
     pulse.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  security.pam.services.gdm-password.enableGnomeKeyring = true;
+  programs.seahorse.enable = true;
+
   users.users.megadrage = {
     isNormalUser = true;
     description = "MegaDrage";
@@ -101,6 +104,12 @@
   nixpkgs.config.allowUnfree = true;
  
   environment.systemPackages = with pkgs; [
+
+    brightnessctl
+    playerctl
+    pamixer
+    libsecret
+    
     onlyoffice-bin 
     obs-studio
     blender
@@ -119,7 +128,6 @@
   	xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
 		xdg-user-dirs
-    radeontop
     nekoray
     gnome.gnome-software
     gnome-tweaks
@@ -129,7 +137,10 @@
     chromium
     btop
     eza
-    spawn_fcgi
+    qt6.qtwayland
+    qt5.qtwayland
+    acpi
+    libnotify
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
@@ -143,15 +154,6 @@
   
   security.polkit = {
     enable = true; 
-    # extraConfig = ''
-    #   polkit.addRule(function(action, subject) {
-    #   if (action.id == "org.freedesktop.policykit.exec" &&
-    #       action.lookup("command_line") == "/usr/bin/bash [绝对路径]/.config/nekoray/config/vpn-run-root.sh" &&
-    #       subject.isInGroup("wheel")) {
-    #       return polkit.Result.YES;
-    #   }
-    #   })
-    # '';
   };
   xdg.portal = {
 		enable = true;
@@ -165,7 +167,7 @@
     allowedTCPPorts = [ 8384 22000 80 81 443];
     allowedUDPPorts = [ 80 81 443 22000 21027 ];
   };
-  system.autoUpgrade = {
+system.autoUpgrade = {    
     enable = true;
     channel = "https://nixos.org/channels/nixos-unstable";
   };

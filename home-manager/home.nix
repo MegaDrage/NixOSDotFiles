@@ -5,7 +5,7 @@
     ./vscode.nix
     ./ranger.nix
     ./zsh.nix
-    ./hyprland.nix
+    ./hyprland/hyprland.nix
     ./git.nix
     ./starship.nix
     ./bat.nix
@@ -14,6 +14,10 @@
     ./dfconf.nix
     ./home-packages.nix
     ./kitty.nix
+    ./hyprland/waybar.nix
+    ./hyprland/hyprlock/hyprlock.nix
+    ./hyprland/hypridle/hypridle.nix
+    ./hyprland/swaync/swaync.nix
   ];
   home = {
     username = "megadrage";
