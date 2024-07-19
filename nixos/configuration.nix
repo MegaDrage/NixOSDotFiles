@@ -13,6 +13,7 @@
       ./syncthing.nix
       ./docker.nix
       ./polkit.nix
+      ./stylix.nix
     ];
   
   environment.shells = with pkgs; [ zsh ];
@@ -92,7 +93,7 @@
     pulse.enable = true;
   };
 
-  security.pam.services.gdm-password.enableGnomeKeyring = true;
+  security.pam.services.hyprland.enableGnomeKeyring = true;
   programs.seahorse.enable = true;
 
   users.users.megadrage = {

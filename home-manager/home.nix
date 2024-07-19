@@ -18,6 +18,7 @@
     ./hyprland/hyprlock/hyprlock.nix
     ./hyprland/hypridle/hypridle.nix
     ./hyprland/swaync/swaync.nix
+    ./hyprland/merge.nix
   ];
   home = {
     username = "megadrage";

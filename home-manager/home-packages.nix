@@ -8,5 +8,6 @@
     gnomeExtensions.space-bar
     gnomeExtensions.arcmenu
     hyprshot
+    pavucontrol
   ];
 }

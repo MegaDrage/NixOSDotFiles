@@ -24,8 +24,8 @@
         gaps_in = 0;
         gaps_out = 0;
         border_size = 2;
-        "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
-        "col.inactive_border" = "0x00000000";
+        # "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
+        # "col.inactive_border" = "0x00000000";
         border_part_of_window = false;
         no_border_on_floating = false;
       };
@@ -82,7 +82,7 @@
         shadow_offset = "0 2";
         shadow_range = 20;
         shadow_render_power = 3;
-        "col.shadow" = "rgba(00000055)";
+        # "col.shadow" = "rgba(00000055)";
       };
 
       animations = {
@@ -128,6 +128,7 @@
         "$mod, Q, killactive,"
         "$mod, Return, exec, kitty"
         "$mod, B, exec, one.ablaze.floorp"	
+        "$mod, D, exec, rofi -show drun"
 
         # Window control
 
