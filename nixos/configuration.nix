@@ -20,6 +20,7 @@
   environment.shells = with pkgs; [ zsh ];
   programs.zsh.enable = true;
 
+
   boot = {
     kernelParams = [ "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1" ];
     kernelPackages = pkgs.linuxPackages_latest;
@@ -139,6 +140,8 @@
     qt5.qtwayland
     acpi
     libnotify
+    superfile
+    powertop
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
@@ -159,6 +162,7 @@
 	};
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.variables.EDITOR = "nvim";
 
   networking.firewall = {
     enable = true;
