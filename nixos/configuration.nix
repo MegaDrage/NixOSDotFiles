@@ -108,7 +108,8 @@
     pamixer
     libsecret
     networkmanagerapplet
-    
+    eww
+        
     onlyoffice-bin 
     obs-studio
     blender
