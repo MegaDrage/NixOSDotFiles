@@ -17,11 +17,10 @@ with lib;
           "pulseaudio"
           "cpu"
           "memory"
-          "idle_inhibitor"
+          # "idle_inhibitor"
         ];
         modules-right = [
           "network"
-          "custom/hyprbindings"
           "custom/notification"
           "custom/exit"
           "battery"
@@ -41,7 +40,7 @@ with lib;
         };
         "clock" = {
           # format = if clock24h == true then '' {:L%H:%M}'' else '' {:L%I:%M %p}'';
-          format = '' {:L%H:%M}'';
+          format = " {:L%H:%M}";
           tooltip = true;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
         };
@@ -77,7 +76,7 @@ with lib;
           format-ethernet = " {bandwidthDownOctets}";
           format-wifi = "{icon} {signalStrength}%";
           format-disconnected = "󰤮";
-          tooltip = false;
+          tooltip = true;
         };
         "tray" = {
           spacing = 12;
@@ -110,15 +109,9 @@ with lib;
           on-click = "sleep 0.1 && wlogout";
         };
         "custom/startmenu" = {
-          tooltip = false;
+          tooltip = true;
           format = "";
-          # exec = "rofi -show drun";
           on-click = "sleep 0.1 && rofi-launcher";
-        };
-        "custom/hyprbindings" = {
-          tooltip = false;
-          format = "󱕴";
-          on-click = "sleep 0.1 && list-hypr-bindings";
         };
         "idle_inhibitor" = {
           format = "{icon}";
@@ -144,7 +137,7 @@ with lib;
           return-type = "json";
           exec-if = "which swaync-client";
           exec = "swaync-client -swb";
-          on-click = "sleep 0.1 && swaync-client -t";
+          on-click = "sleep 0.1 && task-waybar";
           escape = true;
         };
         "battery" = {
@@ -230,17 +223,17 @@ with lib;
         }
         #window, #pulseaudio, #cpu, #memory, #idle_inhibitor {
           font-weight: bold;
-          margin: 4px 0px;
+          margin: 4px 4px;
           margin-left: 7px;
-          padding: 0px 18px;
+          padding: 4px 18px;
           background: #${config.stylix.base16Scheme.base04};
           color: #${config.stylix.base16Scheme.base00};
-          border-radius: 24px 10px 24px 10px;
+          border-radius: 24px 24px 24px 24px;
         }
         #custom-startmenu {
           color: #${config.stylix.base16Scheme.base0B};
-          background: #${config.stylix.base16Scheme.base02};
-          font-size: 28px;
+          background: linear-gradient(90deg, #${config.stylix.base16Scheme.base0E}, #${config.stylix.base16Scheme.base04});
+          font-size: 24px;
           margin: 0px;
           padding: 0px 30px 0px 15px;
           border-radius: 0px 0px 40px 0px;
@@ -250,15 +243,15 @@ with lib;
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};
           color: #${config.stylix.base16Scheme.base00};
-          margin: 4px 0px;
-          margin-right: 7px;
-          border-radius: 10px 24px 10px 24px;
-          padding: 0px 18px;
+          margin: 4px 4px;
+          margin-right: 8px;
+          border-radius: 24px 24px 24px 24px;
+          padding: 4px 18px;
         }
         #clock {
           font-weight: bold;
           color: #0D0E15;
-          background: linear-gradient(45deg, #${config.stylix.base16Scheme.base0E}, #${config.stylix.base16Scheme.base0C});
+          background: linear-gradient(90deg, #${config.stylix.base16Scheme.base0F}, #${config.stylix.base16Scheme.base02});
           margin: 0px;
           padding: 0px 15px 0px 30px;
           border-radius: 0px 0px 0px 40px;

@@ -14,8 +14,9 @@
       ./docker.nix
       ./polkit.nix
       ./stylix.nix
+      ./scripts/merge-scripts.nix
     ];
-  
+
   environment.shells = with pkgs; [ zsh ];
   programs.zsh.enable = true;
 
@@ -74,12 +75,7 @@
           wayland = true;
         };
     };
-      # sddm = {
-      #   enable = true;
-      #   wayland.enable = true;
-      # };
     };
-    # desktopManager.plasma6.enable = true;
     printing.enable = true;
   };
   hardware.pulseaudio.enable = false;
@@ -103,13 +99,14 @@
   };
 
   nixpkgs.config.allowUnfree = true;
- 
+  services.fwupd.enable = true;
   environment.systemPackages = with pkgs; [
 
     brightnessctl
     playerctl
     pamixer
     libsecret
+    networkmanagerapplet
     
     onlyoffice-bin 
     obs-studio
