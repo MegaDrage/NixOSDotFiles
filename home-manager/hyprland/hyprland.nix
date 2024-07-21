@@ -7,19 +7,35 @@
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
-
     systemd.enable = true;
     settings = {
+      monitor = [
+        ",preferred,auto,1"
+      ];
       windowrule = [
        "float, pavucontrol"
+      ];
+      env = [
+        "NIXOS_OZONE_WL, 1"
+        "NIXPKGS_ALLOW_UNFREE, 1"
+        "XDG_CURRENT_DESKTOP, Hyprland"
+        "XDG_SESSION_TYPE, wayland"
+        "XDG_SESSION_DESKTOP, Hyprland"
+        "GDK_BACKEND, wayland, x11"
+        "CLUTTER_BACKEND, wayland"
+        "QT_QPA_PLATFORM=wayland;xcb"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
+        "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
+        "SDL_VIDEODRIVER, x11"
+        "MOZ_ENABLE_WAYLAND, 1"
       ];
       exec-once = [
         "polkit-agent-helper-1 &"
         "systemctl start --user polkit-gnome-authentication-agent-1 &"
-        "waybar &"
-        "swaync &"
+        "killall -q waybar;sleep .5 && waybar &"
+        "killall -q swaync;sleep .5 && swaync &"
         "hypridle &"
-        "nm-applet --indicator"
+        # "nm-applet --indicator"
       ];
 
       general = {

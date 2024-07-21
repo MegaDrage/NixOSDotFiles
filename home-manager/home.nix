@@ -3,7 +3,7 @@
 {
   imports = [
     ./stylix.nix
-    ./neovim.nix
+    ./neovim/neovim.nix
     ./vscode.nix
     ./zsh.nix
     ./hyprland/hyprland.nix

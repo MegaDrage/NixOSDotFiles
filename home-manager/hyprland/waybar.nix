@@ -17,10 +17,8 @@ with lib;
           "pulseaudio"
           "cpu"
           "memory"
-          # "idle_inhibitor"
         ];
         modules-right = [
-          "network"
           "custom/notification"
           "custom/exit"
           "battery"
@@ -48,7 +46,7 @@ with lib;
           max-length = 22;
           separate-outputs = false;
           rewrite = {
-            "" = " 🙈 No Windows? ";
+            "" = "";
           };
         };
         "memory" = {
@@ -65,19 +63,7 @@ with lib;
           format = " {free}";
           tooltip = true;
         };
-        "network" = {
-          format-icons = [
-            "󰤯"
-            "󰤟"
-            "󰤢"
-            "󰤥"
-            "󰤨"
-          ];
-          format-ethernet = " {bandwidthDownOctets}";
-          format-wifi = "{icon} {signalStrength}%";
-          format-disconnected = "󰤮";
-          tooltip = true;
-        };
+
         "tray" = {
           spacing = 12;
         };
@@ -113,14 +99,7 @@ with lib;
           format = "";
           on-click = "sleep 0.1 && rofi-launcher";
         };
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-          tooltip = "true";
-        };
+        
         "custom/notification" = {
           tooltip = false;
           format = "{icon} {}";

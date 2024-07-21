@@ -9,5 +9,6 @@
     gnomeExtensions.arcmenu
     hyprshot
     pavucontrol
+    networkmanager_dmenu
   ];
 }

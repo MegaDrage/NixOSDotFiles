@@ -30,7 +30,7 @@
         }
         {
           timeout = 1800; # 30min
-          on-timeout = "systemctl hibernate";
+          on-timeout = "systemctl hibernate && kill $(pidof hyprlock)";
         }
       ];
     };
