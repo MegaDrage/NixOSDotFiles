@@ -13,7 +13,6 @@
       ./syncthing.nix
       ./docker.nix
       ./polkit.nix
-      ./stylix.nix
       ./scripts/merge-scripts.nix
     ];
 

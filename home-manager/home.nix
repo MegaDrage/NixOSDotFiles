@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./stylix.nix
     ./neovim/neovim.nix
     ./vscode.nix
     ./zsh.nix
