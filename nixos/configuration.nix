@@ -109,11 +109,11 @@
     libsecret
     networkmanagerapplet
     eww
+    ags
         
     onlyoffice-bin 
     obs-studio
     blender
-    vim
     ferium
     wget
     glxinfo

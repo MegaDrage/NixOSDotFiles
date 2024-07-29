@@ -1,97 +1,79 @@
-(defwindow powermenu
-    :monitor 0 ;; wayland users may need this
-    :stacking "fg"
-    :windowtype "normal"
-    :wm-ignore true
-    :geometry (geometry :width "10%" :height "10%")
-    (powermenu_layout))
-  
-    (defpoll time :interval "5s"
-      :initial `date +'{"hour":"%H","min":"%M"}'`
-      `date +'{"hour":"%H","min":"%M"}'`)
-    (defpoll net :interval "100s"
-      :initial `N/A`
-      `nmcli -t -f SIGNAL,ACTIVE device wifi \
+(defwindow networkmenu
+            :monitor 0
+            :geometry (geometry :x "0%"
+                        :y "20px"
+                        :width "30%"
+                        :height "30%"
+                        :anchor "top right")
+            :stacking "overlay"
+            :windowtype "dialog"
+            ; :focusable true
+    (networkmenu_layout))
+
+    (defpoll network_info :interval "5s"
+        :initial 'N/A'
+        `nmcli -t -f SIGNAL,ACTIVE device wifi \
         | awk -F':' '{if($2=="yes")print$1}'`)
-  
-    (defwidget powermenu_layout []
-      (box :class "layout-box" :space-evenly false :orientation "vertical"
-          :style "background-image: url('./wallpaper')"
-        (box :valign "start" :space-evenly false :spacing 25
-          (_sundial)
-          (_battery :status {EWW_BATTERY.BAT0.status}
-                    :battery {EWW_BATTERY.BAT0.capacity}
-                    :charge "" :one "" :two "" :three "" :four ""
-                    :five "" :six "" :seven "")
-          (_network :strength net :offline "" :excellent "" :good ""
-                    :okay "" :slow "")
-          (label :text "|" :class "sep")
-          (button :onclick "eww close powermenu" :class "close-btn" ""))
-        (box :space-evenly false :hexpand true :vexpand true
-          (box :spacing 15 :class "tm-box" :space-evenly false
-                :valign "end" :halign "start"
-            (label :text "")
-            (label :text "${time.hour}  ${time.min}"))
-          (_buttons :shutdown "poweroff" :reboot "reboot"
-                    :logout "loginctl kill-session self"
-                    :shutdown_icon "" :reboot_icon ""
-                    :logout_icon ""))))
-  
-    (defwidget _battery [battery status one two three
-                        four five six seven charge]
-      (box :class "bat-box" :space-evenly false :spacing 8
-        (label :text {status == 'Charging' ? charge :
-          battery < 15 ? seven :
-            battery < 30 ? six :
-              battery < 45 ? five :
-                battery < 60 ? four :
-                  battery < 75 ? three :
-                    battery < 95 ? two : one})))
-  
+    
+    (defpoll network_name_info :interval "5s"
+        :initial 'N/A'
+        `nmcli -t -f active,ssid dev wifi \
+        | awk -F':' '{if($1=="yes")print$2}'`)
+
+    (defwidget networkmenu_layout []
+        (box :class "layout-box" :space-evenly false :orientation "vertical"
+          (box :halign "end" :valign "start" :space-evenly false :spacing 25
+            (_network_name :name network_name_info)
+            (label :text "|" :class "sep")
+            (_network :strength network_info :offline "󰣽" :excellent "󰣺" :good "󰣸"
+            :okay "󰣶" :slow "󰣴")
+            (button :onclick "eww close networkmenu" :class "close-btn" "󰅙"))
+           (box :space-evenly false :hexpand true :vexpand true 
+            (button :onclick "eww open networks" :class "open-btn" "󰤄"))))
+            
+
     (defwidget _network [strength offline excellent
-                        good okay slow]
-      (box :class "net-box"
-          :space-evenly false
-          :spacing 8
+                good okay slow]
+        (box :class "net-box"
+        :space-evenly false
+        :spacing 8
         (label :text {strength == "" ? offline :
-          strength < 26 ? slow :
+        strength < 26 ? slow :
             strength < 51 ? okay :
-              strength < 76 ? good : excellent})))
-  
-    (defwidget _buttons [shutdown shutdown_icon reboot
-                        reboot_icon logout logout_icon]
-      (box :class "btns-box" :spacing 5
-          :vexpand true :hexpand true
-          :valign "end" :halign "end"
-          :space-evenly false
-        (button :onclick shutdown shutdown_icon)
-        (button :onclick reboot reboot_icon)
-        (button :onclick logout logout_icon)))
-  
-    (defwidget _sundial []
-      (label :class "sundial-lbl" :halign "end" :hexpand true
-            :text {time.hour >= 2 && time.hour <= 4 ? "Early Morning" :
-                  time.hour <= 5 ? "Dawn" :
-                  time.hour >= 6
-                    && (time.hour <= 8 && time.min <= 59)
-                      ? "Morning" :
-                  time.hour >= 9
-                    && (time.hour <= 11 && time.min <= 59)
-                      ? "Late Morning" :
-                  time.hour == 12 && time.min <= 29
-                    ? "Midday" :
-                  time.hour >= 12 && time.hour <= 16
-                    ? "Afternoon" :
-                  time.hour > 16 && time.hour <= 17
-                    ? "Late Afternoon" :
-                  (time.hour >= 17 && time.min <= 1)
-                    || (time.hour <= 18 && time.min <= 20)
-                      ? "Early Evening" :
-                  time.hour >= 18 && time.hour <= 19
-                    ? "Dusk" :
-                  time.hour > 19 && time.hour <= 21
-                    ? "Late Evening" :
-                  time.hour > 21 ? "Night" : "Midnight"}))
-  
-    ;; vim:ft=yuck
-  
+            strength < 76 ? good : excellent})))
+    
+    (defwidget _network_name [name]
+        (box :class "net-name-box"
+        :space-evenly false
+        :spacing 25
+        (label :text {name == "" ? "Wifi: N/A" : "Wifi: ${name}"})))
+    
+
+    (defwindow networks
+        :monitor 0
+        :geometry (geometry :x "30%"
+                    :y "20px"
+                    :width "30%"
+                    :height "30%"
+                    :anchor "top center")
+        :stacking "overlay"
+        :windowtype "dialog"
+    (_networks_layout))
+
+    (defwidget _networks_layout []
+        (box :class "layout-box" :space-evenly false :orientation "horizontal"
+            (box :halign "center" :valign "start" :space-evenly false :spacing 25
+                (_available_networks))
+            (box :halign "end" :valign "start" :space-evenly false :spacing 25
+                (button :onclick "eww close networks" :class "close-btn" "󰅙"))))
+        ; (box :class "layout-box" :space-evenly false :orientation "vertical"
+        ;     (box :halign "start" :valign "start" :space-evenly false :spacing 25
+        ;         (button :onclick "" :class "open-btn" "󰤄"))))
+
+
+    (defwidget _available_networks []
+        (box :class "net-av-box"
+        :space-evenly false
+        :spacing 25
+        (label :text "Available Networks:")))
+    
