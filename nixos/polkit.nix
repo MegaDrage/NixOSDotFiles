@@ -16,6 +16,13 @@
     };
     extraConfig = ''
       DefaultTimeoutStopSec=10s
+      polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.policykit.exec" &&
+          action.lookup("command_line") == "/usr/bin/bash [绝对路径]/.config/nekoray/config/vpn-run-root.sh" &&
+          subject.isInGroup("wheel")) {
+          return polkit.Result.YES;
+      }
+      })
     '';
   };
 }

@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, lib, ... }:
 
 {
@@ -44,24 +40,26 @@
     hostName = "nixos";
     networkmanager.enable = true;
   };
+
   hardware.enableRedistributableFirmware = true;
   time = {
     timeZone = "Asia/Novosibirsk";
     hardwareClockInLocalTime = true;
   };
 
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ru_RU.UTF-8";
-    LC_IDENTIFICATION = "ru_RU.UTF-8";
-    LC_MEASUREMENT = "ru_RU.UTF-8";
-    LC_MONETARY = "ru_RU.UTF-8";
-    LC_NAME = "ru_RU.UTF-8";
-    LC_NUMERIC = "ru_RU.UTF-8";
-    LC_PAPER = "ru_RU.UTF-8";
-    LC_TELEPHONE = "ru_RU.UTF-8";
-    LC_TIME = "ru_RU.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "ru_RU.UTF-8";
+      LC_IDENTIFICATION = "ru_RU.UTF-8";
+      LC_MEASUREMENT = "ru_RU.UTF-8";
+      LC_MONETARY = "ru_RU.UTF-8";
+      LC_NAME = "ru_RU.UTF-8";
+      LC_NUMERIC = "ru_RU.UTF-8";
+      LC_PAPER = "ru_RU.UTF-8";
+      LC_TELEPHONE = "ru_RU.UTF-8";
+      LC_TIME = "ru_RU.UTF-8";
+    };
   };
 
   services = {
@@ -74,10 +72,11 @@
           enable = true;
           wayland = true;
         };
-    };
+      };
     };
     printing.enable = true;
   };
+
   hardware.pulseaudio.enable = false;
 
   services.flatpak.enable = true;
@@ -102,6 +101,9 @@
   services.fwupd.enable = true;
   environment.systemPackages = with pkgs; [
 
+    scribus
+    inkscape
+
     brightnessctl
     playerctl
     pamixer
@@ -109,7 +111,7 @@
     networkmanagerapplet
     eww
     ags
-        
+    
     onlyoffice-bin 
     obs-studio
     blender
@@ -127,11 +129,14 @@
   	xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
 		xdg-user-dirs
-    nekoray
     gnome.gnome-software
     gnome-tweaks
     obsidian
+
     zed-editor
+    nnn
+
+    zathura
     gitnuro
     chromium
     btop
@@ -156,9 +161,9 @@
   security.polkit = {
     enable = true; 
   };
+
   xdg.portal = {
 		enable = true;
-		# wlr.enable = true;
 	};
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -169,10 +174,12 @@
     allowedTCPPorts = [ 8384 22000 80 81 443];
     allowedUDPPorts = [ 80 81 443 22000 21027 ];
   };
-system.autoUpgrade = {    
+
+  system.autoUpgrade = {    
     enable = true;
     channel = "https://nixos.org/channels/nixos-unstable";
   };
+
   #Garbage collection
   nix = {
     settings.auto-optimise-store = true;
